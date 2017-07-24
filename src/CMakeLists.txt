@@ -29,6 +29,7 @@ add_executable (
     output.c
     pids.c
     sync.c
+    ext_com.c
 
     firdecim_q15.c
     firdes_kaiser.c

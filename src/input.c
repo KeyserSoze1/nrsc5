@@ -361,3 +361,22 @@ void input_aas_push(input_t *st, uint8_t *psd, unsigned int len)
 {
     output_aas_push(st->output, psd, len);
 }
+
+void input_set_program(input_t *st, unsigned int program)
+{
+    if (program > 3)
+    {
+        log_error("Attempted to set program > 3!");
+        return;
+    }
+
+#ifdef USE_THREADS
+    pthread_mutex_lock(&st->mutex);
+#endif
+    printf("Setting Program\n");
+    frame_set_program(&st->frame, program);
+
+#ifdef USE_THREADS
+    pthread_mutex_unlock(&st->mutex);
+#endif
+}

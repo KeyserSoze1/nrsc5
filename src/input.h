@@ -61,3 +61,4 @@ void input_set_skip(input_t *st, unsigned int skip);
 void input_wait(input_t *st, int flush);
 void input_pdu_push(input_t *st, uint8_t *pdu, unsigned int len);
 void input_aas_push(input_t *st, uint8_t *psd, unsigned int len);
+void input_set_program(input_t *st, unsigned int program);

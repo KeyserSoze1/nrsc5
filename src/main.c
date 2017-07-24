@@ -31,6 +31,7 @@
 
 #include "defines.h"
 #include "input.h"
+#include "ext_com.h"
 
 #define RADIO_BUFCNT (8)
 #define RADIO_BUFFER (512 * 1024)
@@ -263,6 +264,11 @@ int main(int argc, char *argv[])
 
     math_init();
     input_init(&input, &output, frequency, program, outfp);
+
+#ifdef USE_THREADS
+    pthread_t tid;
+    int create_err = pthread_create(&tid, NULL, &msg_listener, &input);
+#endif
 
     if (infp)
     {
